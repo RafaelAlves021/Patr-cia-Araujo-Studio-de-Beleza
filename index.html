@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patrícia Araujo Studio de Beleza | Cabelo, Cílios, Unhas & Bem-estar</title>
+  
+  <!-- Fontes do Google: Fraunces (títulos calorosos) e Plus Jakarta Sans (leitura moderna) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Ícones Phosphor para interface leve e moderna -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <!-- Tailwind CSS para utilitários responsivos rápidos -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            plum: {
+              50: '#FBF7FC',
+              100: '#F3EBF6',
+              200: '#E8D4ED',
+              300: '#D5B4DE',
+              600: '#832884',
+              700: '#641C65',
+              800: '#4A154B', // Cor principal ameixa profundo
+              900: '#340C35',
+            },
+            lilac: {
+              soft: '#F4EDF7',
+              border: '#E3D2E8',
+              hover: '#EADCF0',
+            },
+            cream: {
+              bg: '#FDFBF7',
+              card: '#FAF6F0',
+            },
+            peach: {
+              accent: '#FFE6D5',
+              tag: '#F97316',
+            }
+          },
+          fontFamily: {
+            serif: ['Fraunces', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          boxShadow: {
+            'polaroid': '0 8px 24px -4px rgba(74, 21, 75, 0.12), 0 2px 6px -1px rgba(0, 0, 0, 0.04)',
+            'polaroid-hover': '0 18px 36px -6px rgba(74, 21, 75, 0.22), 0 8px 16px -2px rgba(0, 0, 0, 0.06)',
+            'bubble': '0 2px 8px rgba(0,0,0,0.06)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Estilos específicos para efeito scrapbook e polaroids */
+    body {
+      background-color: #FDFBF7;
+      color: #382939;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .polaroid-card {
+      background: #FFFFFF;
+      padding: 12px 12px 20px 12px;
+      box-shadow: 0 10px 25px -4px rgba(74, 21, 75, 0.12), 0 4px 10px -2px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+    }
+
+    .polaroid-card:hover {
+      transform: rotate(0deg) scale(1.04) !important;
+      z-index: 20 !important;
+      box-shadow: 0 20px 35px -5px rgba(74, 21, 75, 0.22);
+    }
+
+    /* Rotações Scrapbook */
+    .rot-left-lg { transform: rotate(-3.5deg); }
+    .rot-right-lg { transform: rotate(3deg); }
+    .rot-left-sm { transform: rotate(-1.5deg); }
+    .rot-right-sm { transform: rotate(2deg); }
+
+    /* Fita adesiva estilo scrapbook */
+    .washi-tape {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 22px;
+      background: rgba(234, 220, 240, 0.85);
+      box-shadow: inset 0 0 4px rgba(74, 21, 75, 0.1);
+      backdrop-filter: blur(2px);
+      z-index: 10;
+      clip-path: polygon(4% 0%, 96% 0%, 100% 100%, 0% 100%);
+    }
+
+    /* Balão de mensagem estilo WhatsApp */
+    .whatsapp-bubble {
+      position: relative;
+      background: #FFFFFF;
+      border-radius: 18px 18px 18px 4px;
+      box-shadow: 0 3px 12px rgba(74, 21, 75, 0.06);
+    }
+
+    .whatsapp-bubble::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: -8px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 12px 14px 0;
+      border-color: transparent #FFFFFF transparent transparent;
+    }
+
+    /* Esconde barra de rolagem dos chips mas permite scroll */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Animação suave para cards de serviço */
+    .service-card {
+      transition: transform 0.2s ease, opacity 0.25s ease, box-shadow 0.2s ease;
+    }
+  </style>
+</head>
+<body class="selection:bg-plum-200 selection:text-plum-900 antialiased">
+
+  <!-- ========================================================
+       1. HEADER FIXO COM NAVEGAÇÃO & CONTATO
+       ======================================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-[#FDFBF7]/90 backdrop-blur-md border-b border-plum-100 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo / Nome -->
+      <a href="#" class="group flex items-center gap-2">
+        <div class="w-10 h-10 rounded-full bg-plum-800 text-white flex items-center justify-center font-serif text-xl font-bold group-hover:scale-105 transition-transform">
+          P
+        </div>
+        <div>
+          <span class="block font-serif text-xl sm:text-2xl font-bold text-plum-800 tracking-tight leading-tight">
+            Patrícia Araujo
+          </span>
+          <span class="block text-xs uppercase tracking-widest text-plum-600 font-medium">
+            Studio de Beleza
+          </span>
+        </div>
+      </a>
+
+      <!-- Menu Desktop -->
+      <nav class="hidden md:flex items-center space-x-7 text-sm font-medium text-stone-700">
+        <a href="#servicos" class="hover:text-plum-800 transition-colors">Serviços</a>
+        <a href="#resultados" class="hover:text-plum-800 transition-colors">Resultados</a>
+        <a href="#sobre" class="hover:text-plum-800 transition-colors">Sobre o Studio</a>
+        <a href="#depoimentos" class="hover:text-plum-800 transition-colors">Depoimentos</a>
+        <a href="#localizacao" class="hover:text-plum-800 transition-colors">Localização</a>
+      </nav>
+
+      <!-- Botão CTA Desktop & Hambúrguer Mobile -->
+      <div class="flex items-center gap-3">
+        <a href="#" class="cta-whatsapp-link hidden sm:inline-flex items-center gap-2 bg-plum-800 hover:bg-plum-900 text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-md shadow-plum-800/15 hover:shadow-lg transition-all" target="_blank" rel="noopener noreferrer">
+          <i class="ph-bold ph-whatsapp-logo text-lg text-emerald-300"></i>
+          <span>Agendar no WhatsApp</span>
+        </a>
+
+        <!-- Botão Menu Mobile -->
+        <button id="mobileMenuBtn" aria-label="Abrir menu" class="md:hidden p-2 rounded-xl text-plum-800 hover:bg-plum-100 transition">
+          <i class="ph-bold ph-list text-2xl" id="menuIcon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Gaveta do Menu Mobile -->
+    <div id="mobileMenu" class="md:hidden hidden bg-[#FDFBF7] border-b border-plum-100 px-6 py-5 shadow-xl transition-all">
+      <div class="flex flex-col space-y-4 font-medium text-base text-stone-700">
+        <a href="#servicos" class="mobile-link py-1 hover:text-plum-800">Cardápio de Serviços</a>
+        <a href="#resultados" class="mobile-link py-1 hover:text-plum-800">Resultados & Mural</a>
+        <a href="#sobre" class="mobile-link py-1 hover:text-plum-800">Sobre Nós</a>
+        <a href="#depoimentos" class="mobile-link py-1 hover:text-plum-800">Depoimentos</a>
+        <a href="#localizacao" class="mobile-link py-1 hover:text-plum-800">Localização e Horários</a>
+        <div class="pt-3 border-t border-plum-100">
+          <a href="#" class="cta-whatsapp-link flex items-center justify-center gap-2 bg-plum-800 text-white px-5 py-3 rounded-2xl font-semibold shadow-sm text-center" target="_blank" rel="noopener noreferrer">
+            <i class="ph-bold ph-whatsapp-logo text-xl text-emerald-300"></i>
+            <span>Agendar no WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-24 sm:pt-28">
+
+    <!-- ========================================================
+         2. HERO SECTION COM MURAL SCRAPBOOK / POLAROIDS
+         ======================================================== -->
+    <section class="relative overflow-hidden py-12 md:py-20 lg:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          <!-- Lado Esquerdo: Textos e Ação -->
+          <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+            
+            <!-- Badge Google Reviews -->
+            <div class="inline-flex items-center gap-2 bg-white px-3.5 py-1.5 rounded-full border border-lilac-border shadow-sm text-xs sm:text-sm font-semibold text-plum-800 mx-auto lg:mx-0">
+              <span class="flex text-amber-400">
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+              </span>
+              <span class="rating-text font-bold">4.9 no Google</span>
+              <span class="text-stone-400">•</span>
+              <span class="reviews-count-text text-stone-500 font-normal">37 avaliações</span>
+            </div>
+
+            <!-- Título Principal -->
+            <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-plum-800 font-bold tracking-tight leading-[1.15]">
+              Realce a sua beleza com quem entende do assunto.
+            </h1>
+
+            <!-- Texto de Apoio Solicitado -->
+            <p class="text-lg sm:text-xl text-stone-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              Cabelo, cílios, sobrancelhas, unhas e muito mais, tudo em um só lugar.
+            </p>
+
+            <!-- Botões de Ação do Hero -->
+            <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+              <a href="#" class="cta-whatsapp-link w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-plum-800 hover:bg-plum-900 text-white px-8 py-4 rounded-full text-base font-semibold shadow-lg shadow-plum-800/20 hover:scale-[1.02] active:scale-[0.98] transition-all" target="_blank" rel="noopener noreferrer">
+                <i class="ph-bold ph-whatsapp-logo text-2xl text-emerald-300"></i>
+                <span>Agendar Horário</span>
+              </a>
+
+              <a href="#servicos" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-lilac-soft hover:bg-plum-100 text-plum-800 px-7 py-4 rounded-full text-base font-semibold border border-lilac-border hover:border-plum-300 transition-all">
+                <span>Ver Todos os Serviços</span>
+                <i class="ph-bold ph-arrow-down"></i>
+              </a>
+            </div>
+
+            <!-- Destaques Rápidos -->
+            <div class="pt-6 grid grid-cols-3 gap-2 sm:gap-4 border-t border-plum-100 max-w-lg mx-auto lg:mx-0 text-left">
+              <div class="bg-white/80 p-3 rounded-2xl border border-plum-100 text-center">
+                <span class="block text-xl font-bold text-plum-800">100%</span>
+                <span class="text-xs text-stone-500">Acolhedor</span>
+              </div>
+              <div class="bg-white/80 p-3 rounded-2xl border border-plum-100 text-center">
+                <span class="block text-xl font-bold text-plum-800">+7</span>
+                <span class="text-xs text-stone-500">Especialidades</span>
+              </div>
+              <div class="bg-white/80 p-3 rounded-2xl border border-plum-100 text-center">
+                <span class="block text-xl font-bold text-plum-800">4.9 ★</span>
+                <span class="text-xs text-stone-500">Google Nota</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Lado Direito: Mural Polaroid Scrapbook -->
+          <div class="lg:col-span-6 relative mt-4 lg:mt-0 flex items-center justify-center min-h-[380px] sm:min-h-[460px]">
+            
+            <!-- Decoração de fundo sutil -->
+            <div class="absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-plum-100/70 filter blur-3xl -z-10"></div>
+            
+            <!-- Container das fotos polaroid com rotações de scrapbook -->
+            <div class="relative w-full max-w-[420px] h-[360px] sm:h-[420px] mx-auto">
+              
+              <!-- Polaroid 1: Balayage / Cabelo (Superior Esquerda) -->
+              <div class="polaroid-card rot-left-lg absolute top-0 left-2 sm:left-4 w-44 sm:w-52 cursor-pointer z-10">
+                <div class="washi-tape"></div>
+                <div class="overflow-hidden rounded bg-stone-100 aspect-[4/5]">
+                  <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80" alt="Cabelo Balayage Patrícia Araujo" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x500/F4EDF7/4A154B?text=Cabelo+Studio';">
+                </div>
+                <p class="mt-2 text-center font-serif text-xs sm:text-sm font-semibold text-plum-800">Balayage Iluminado ✨</p>
+              </div>
+
+              <!-- Polaroid 2: Cílios / Olhar (Superior Direita) -->
+              <div class="polaroid-card rot-right-lg absolute top-4 right-1 sm:right-3 w-40 sm:w-48 cursor-pointer z-20">
+                <div class="washi-tape"></div>
+                <div class="overflow-hidden rounded bg-stone-100 aspect-square">
+                  <img src="https://images.unsplash.com/photo-1583001931096-959e9a1a6223?auto=format&fit=crop&w=600&q=80" alt="Extensão de Cílios" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x400/F4EDF7/4A154B?text=Extensao+Cilios';">
+                </div>
+                <p class="mt-2 text-center font-serif text-xs sm:text-sm font-semibold text-plum-800">Cílios de Destaque 💖</p>
+              </div>
+
+              <!-- Polaroid 3: Unhas / Manicure (Inferior Esquerda) -->
+              <div class="polaroid-card rot-right-sm absolute bottom-2 left-6 sm:left-12 w-38 sm:w-46 cursor-pointer z-30">
+                <div class="overflow-hidden rounded bg-stone-100 aspect-square">
+                  <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=600&q=80" alt="Manicure e Unhas Acrílicas" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x400/F4EDF7/4A154B?text=Manicure+Perfeita';">
+                </div>
+                <p class="mt-2 text-center font-serif text-xs font-semibold text-plum-800">Unhas Impecáveis 💅</p>
+              </div>
+
+              <!-- Polaroid 4: Sobrancelhas / Rosto (Inferior Direita) -->
+              <div class="polaroid-card rot-left-sm absolute bottom-0 right-4 sm:right-6 w-44 sm:w-52 cursor-pointer z-20">
+                <div class="overflow-hidden rounded bg-stone-100 aspect-[4/3]">
+                  <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" alt="Design de Sobrancelhas e Rosto" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x300/F4EDF7/4A154B?text=Design+Sobrancelhas';">
+                </div>
+                <p class="mt-2 text-center font-serif text-xs sm:text-sm font-semibold text-plum-800">Design Natural 🌿</p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================================
+         3. CARDÁPIO DE SERVIÇOS COM BUSCA E FILTROS EM TEMPO REAL
+         ======================================================== -->
+    <section id="servicos" class="py-16 md:py-24 bg-lilac-soft/40 border-y border-plum-100 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Cabeçalho da Seção -->
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span class="inline-block text-xs font-bold tracking-widest text-plum-600 uppercase bg-plum-100 px-3.5 py-1 rounded-full mb-3">
+            Cardápio Completo
+          </span>
+          <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-plum-800 tracking-tight">
+            Encontre o cuidado ideal para hoje
+          </h2>
+          <p class="text-stone-600 mt-3 text-base sm:text-lg">
+            Use a pesquisa rápida ou selecione a categoria desejada para consultar e agendar em poucos cliques.
+          </p>
+        </div>
+
+        <!-- Barra de Busca Rápida (Sticky no mobile durante navegação na área) -->
+        <div class="max-w-2xl mx-auto mb-6 sticky top-20 z-30 pt-2 pb-1">
+          <div class="relative bg-white rounded-2xl shadow-md shadow-plum-800/5 border border-plum-200 transition-all focus-within:ring-2 focus-within:ring-plum-800 focus-within:border-transparent">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-plum-700">
+              <i class="ph-bold ph-magnifying-glass text-xl"></i>
+            </div>
+            <input 
+              type="text" 
+              id="serviceSearchInput" 
+              placeholder="O que você procura? (ex: escova, cílios, unhas...)"
+              class="w-full pl-12 pr-10 py-3.5 sm:py-4 rounded-2xl bg-transparent text-sm sm:text-base text-stone-800 placeholder-stone-400 focus:outline-none"
+            >
+            <button 
+              id="clearSearchBtn" 
+              class="hidden absolute inset-y-0 right-0 pr-4 flex items-center text-stone-400 hover:text-plum-800"
+              title="Limpar busca"
+            >
+              <i class="ph-bold ph-x-circle text-xl"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Chips de Categoria (com scroll horizontal suave no celular) -->
+        <div class="mb-10 overflow-x-auto no-scrollbar py-2">
+          <div class="flex items-center justify-start sm:justify-center gap-2 min-w-max px-2" id="categoryChips">
+            <button data-category="todos" class="category-chip active-chip px-5 py-2 rounded-full text-sm font-semibold transition-all shadow-sm bg-plum-800 text-white">
+              Todos os Serviços
+            </button>
+            <button data-category="Cabelo" class="category-chip px-5 py-2 rounded-full text-sm font-semibold transition-all bg-white text-plum-800 border border-lilac-border hover:bg-plum-100">
+              💇‍♀️ Cabelo
+            </button>
+            <button data-category="Cílios" class="category-chip px-5 py-2 rounded-full text-sm font-semibold transition-all bg-white text-plum-800 border border-lilac-border hover:bg-plum-100">
+              👁️ Cílios
+            </button>
+            <button data-category="Sobrancelhas" class="category-chip px-5 py-2 rounded-full text-sm font-semibold transition-all bg-white text-plum-800 border border-lilac-border hover:bg-plum-100">
+              ✨ Sobrancelhas
+            </button>
+            <button data-category="Unhas" class="category-chip px-5 py-2 rounded-full text-sm font-semibold transition-all bg-white text-plum-800 border border-lilac-border hover:bg-plum-100">
+              💅 Unhas
+            </button>
+            <button data-category="Depilação" class="category-chip px-5 py-2 rounded-full text-sm font-semibold transition-all bg-white text-plum-800 border border-lilac-border hover:bg-plum-100">
+              🌸 Depilação
+            </button>
+            <button data-category="Maquiagem e Pele" class="category-chip px-5 py-2 rounded-full text-sm font-semibold transition-all bg-white text-plum-800 border border-lilac-border hover:bg-plum-100">
+              💄 Maquiagem e Pele
+            </button>
+          </div>
+        </div>
+
+        <!-- Grid de Cards de Serviços -->
+        <div id="servicesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- Os cards são inseridos dinamicamente pelo JavaScript abaixo -->
+        </div>
+
+        <!-- Estado Vazio (quando a busca não encontra nada) -->
+        <div id="noServicesFound" class="hidden text-center py-16 px-4 bg-white rounded-3xl border border-dashed border-plum-200 max-w-md mx-auto my-6">
+          <div class="w-16 h-16 bg-plum-100 text-plum-800 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+            <i class="ph-bold ph-smiley-sad"></i>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-plum-800 mb-2">Nenhum serviço encontrado</h3>
+          <p class="text-sm text-stone-600 mb-5">
+            Não encontramos resultados para sua busca. Quer tirar uma dúvida direta com nossa equipe?
+          </p>
+          <div class="flex flex-col sm:flex-row gap-2 justify-center">
+            <button id="resetSearchBtn" class="px-5 py-2.5 rounded-full bg-lilac-soft text-plum-800 text-xs font-bold hover:bg-plum-100 transition">
+              Limpar Pesquisa
+            </button>
+            <a href="#" class="cta-whatsapp-link px-5 py-2.5 rounded-full bg-plum-800 text-white text-xs font-bold hover:bg-plum-900 transition flex items-center justify-center gap-1.5" target="_blank">
+              <i class="ph-bold ph-whatsapp-logo"></i> Chamar no WhatsApp
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================
+         4. RESULTADOS: MURAL DE TRANSFORMAÇÕES
+         ======================================================== -->
+    <section id="resultados" class="py-16 md:py-24 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div>
+            <span class="inline-block text-xs font-bold tracking-widest text-plum-600 uppercase bg-plum-100 px-3.5 py-1 rounded-full mb-3">
+              Mural de Trabalhos
+            </span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-plum-800">
+              Resultados reais que encantam
+            </h2>
+            <p class="text-stone-600 mt-2 max-w-lg">
+              Um gostinho das transformações diárias feitas com carinho e precisão técnica.
+            </p>
+          </div>
+
+          <a href="https://www.instagram.com/studio_patriciaaraujo" target="_blank" rel="noopener noreferrer" class="mt-4 md:mt-0 inline-flex items-center gap-2 text-sm font-semibold text-plum-800 hover:text-plum-900 group">
+            <i class="ph-bold ph-instagram-logo text-lg group-hover:scale-110 transition-transform"></i>
+            <span>Acompanhe mais no @studio_patriciaaraujo</span>
+            <i class="ph-bold ph-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Grade de Polaroids Scrapbook -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 pt-4">
+          
+          <!-- Foto 1 -->
+          <div class="polaroid-card rot-left-sm">
+            <div class="washi-tape"></div>
+            <div class="aspect-[3/4] overflow-hidden rounded bg-stone-100">
+              <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=600&q=80" alt="Balayage Iluminado" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x500/F4EDF7/4A154B?text=Balayage';">
+            </div>
+            <p class="mt-3 text-center font-serif text-sm font-bold text-plum-800">Balayage Suave</p>
+            <p class="text-[11px] text-center text-stone-500">Luminosidade & saúde</p>
+          </div>
+
+          <!-- Foto 2 -->
+          <div class="polaroid-card rot-right-lg">
+            <div class="aspect-[3/4] overflow-hidden rounded bg-stone-100">
+              <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=600&q=80" alt="Brushing e Escova Modelada" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x500/F4EDF7/4A154B?text=Brushing';">
+            </div>
+            <p class="mt-3 text-center font-serif text-sm font-bold text-plum-800">Brushing Perfeito</p>
+            <p class="text-[11px] text-center text-stone-500">Movimento & brilho</p>
+          </div>
+
+          <!-- Foto 3 -->
+          <div class="polaroid-card rot-left-lg">
+            <div class="aspect-[3/4] overflow-hidden rounded bg-stone-100">
+              <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=600&q=80" alt="Extensão de Cílios" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x500/F4EDF7/4A154B?text=Cilios';">
+            </div>
+            <p class="mt-3 text-center font-serif text-sm font-bold text-plum-800">Cílios Volumosos</p>
+            <p class="text-[11px] text-center text-stone-500">Olhar expressivo</p>
+          </div>
+
+          <!-- Foto 4 -->
+          <div class="polaroid-card rot-right-sm">
+            <div class="washi-tape"></div>
+            <div class="aspect-[3/4] overflow-hidden rounded bg-stone-100">
+              <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=600&q=80" alt="Unhas e Manicure" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x500/F4EDF7/4A154B?text=Manicure';">
+            </div>
+            <p class="mt-3 text-center font-serif text-sm font-bold text-plum-800">Unhas e Esmaltação</p>
+            <p class="text-[11px] text-center text-stone-500">Acabamento duradouro</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================
+         5. SOBRE O STUDIO
+         ======================================================== -->
+    <section id="sobre" class="py-16 md:py-20 bg-lilac-soft/30">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-3xl p-8 sm:p-12 border border-plum-100 shadow-sm relative overflow-hidden">
+          
+          <div class="max-w-2xl">
+            <span class="inline-block text-xs font-bold tracking-widest text-plum-600 uppercase bg-plum-100 px-3.5 py-1 rounded-full mb-3">
+              Nosso Espaço
+            </span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-plum-800 tracking-tight mb-5">
+              Um ambiente acolhedor para cuidar de você por inteira
+            </h2>
+            <div class="space-y-4 text-stone-600 leading-relaxed text-base sm:text-lg">
+              <p>
+                No <strong>Patrícia Araujo Studio de Beleza</strong>, acreditamos que o momento de autocuidado deve ser prazeroso, leve e descomplicado. Reunimos em um único lugar os melhores cuidados de cabelo, cílios, sobrancelhas, unhas, depilação, maquiagem e pele.
+              </p>
+              <p>
+                Nosso compromisso é oferecer um atendimento atencioso e humano em um ambiente acolhedor, onde você se sente em casa do primeiro café até o resultado final.
+              </p>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-4 items-center">
+              <div class="flex items-center gap-2 text-plum-800 font-semibold text-sm">
+                <i class="ph-fill ph-check-circle text-plum-700 text-lg"></i>
+                <span>Profissionais dedicadas</span>
+              </div>
+              <div class="flex items-center gap-2 text-plum-800 font-semibold text-sm">
+                <i class="ph-fill ph-check-circle text-plum-700 text-lg"></i>
+                <span>Ambiente climatizado e confortável</span>
+              </div>
+              <div class="flex items-center gap-2 text-plum-800 font-semibold text-sm">
+                <i class="ph-fill ph-check-circle text-plum-700 text-lg"></i>
+                <span>Agendamento prático</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================================
+         6. DEPOIMENTOS NO ESTILO CONVERSA DE WHATSAPP
+         ======================================================== -->
+    <section id="depoimentos" class="py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <!-- Card de Reputação Google 4.9 Estrelas -->
+          <div class="lg:col-span-5 text-center lg:text-left space-y-4">
+            <span class="inline-block text-xs font-bold tracking-widest text-plum-600 uppercase bg-plum-100 px-3.5 py-1 rounded-full">
+              Opinião de quem frequenta
+            </span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-plum-800">
+              Satisfação comprovada no Google
+            </h2>
+            <p class="text-stone-600">
+              A confiança de quem já transformou a autoestima no nosso studio é o nosso maior orgulho.
+            </p>
+
+            <div class="inline-block p-6 bg-white rounded-3xl border border-plum-100 shadow-sm text-center w-full max-w-sm">
+              <div class="flex items-center justify-center gap-1.5 text-amber-400 text-2xl mb-1">
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+              </div>
+              <div class="font-serif text-4xl font-bold text-plum-800">4,9 <span class="text-xl text-stone-400 font-normal">/ 5.0</span></div>
+              <p class="text-xs text-stone-500 font-semibold mt-1">Classificação excelente em 37 avaliações no Google</p>
+            </div>
+          </div>
+
+          <!-- Balões de Depoimentos estilo WhatsApp -->
+          <div class="lg:col-span-7 space-y-5">
+            
+            <!-- Depoimento 1 -->
+            <div class="whatsapp-bubble p-5 border border-plum-100 hover:shadow-md transition">
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-full bg-plum-100 text-plum-800 flex items-center justify-center font-bold text-xs">
+                    C1
+                  </div>
+                  <span class="text-xs font-bold text-plum-800">Cliente Verificada</span>
+                </div>
+                <span class="text-[11px] text-stone-400 font-medium">10:42 • WhatsApp</span>
+              </div>
+              <p class="text-stone-700 text-base font-normal">
+                “Ambiente maravilhoso, acolhedor, profissionais maravilhosas… amo!”
+              </p>
+              <div class="mt-2 flex items-center justify-end gap-1 text-[11px] text-emerald-600">
+                <i class="ph-bold ph-checks"></i>
+                <span>Mensagem confirmada</span>
+              </div>
+            </div>
+
+            <!-- Depoimento 2 -->
+            <div class="whatsapp-bubble p-5 border border-plum-100 hover:shadow-md transition">
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-full bg-plum-100 text-plum-800 flex items-center justify-center font-bold text-xs">
+                    C2
+                  </div>
+                  <span class="text-xs font-bold text-plum-800">Cliente Frequente</span>
+                </div>
+                <span class="text-[11px] text-stone-400 font-medium">14:15 • WhatsApp</span>
+              </div>
+              <p class="text-stone-700 text-base font-normal">
+                “Excelente profissional, muito satisfeita com o salão.”
+              </p>
+              <div class="mt-2 flex items-center justify-end gap-1 text-[11px] text-emerald-600">
+                <i class="ph-bold ph-checks"></i>
+                <span>Mensagem confirmada</span>
+              </div>
+            </div>
+
+            <!-- Depoimento 3 -->
+            <div class="whatsapp-bubble p-5 border border-plum-100 hover:shadow-md transition">
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-full bg-plum-100 text-plum-800 flex items-center justify-center font-bold text-xs">
+                    C3
+                  </div>
+                  <span class="text-xs font-bold text-plum-800">Cliente Fiel</span>
+                </div>
+                <span class="text-[11px] text-stone-400 font-medium">17:08 • WhatsApp</span>
+              </div>
+              <p class="text-stone-700 text-base font-normal">
+                “Corto meu cabelo com ela, faço escova e pinto o cabelo.”
+              </p>
+              <div class="mt-2 flex items-center justify-end gap-1 text-[11px] text-emerald-600">
+                <i class="ph-bold ph-checks"></i>
+                <span>Mensagem confirmada</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================
+         7. LOCALIZAÇÃO E MAPA (Centralizado no JS)
+         ======================================================== -->
+    <section id="localizacao" class="py-16 md:py-24 bg-lilac-soft/40 border-t border-plum-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="inline-block text-xs font-bold tracking-widest text-plum-600 uppercase bg-plum-100 px-3.5 py-1 rounded-full mb-3">
+            Onde Estamos
+          </span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-plum-800">
+            Fácil acesso em Jacarepaguá
+          </h2>
+          <p class="text-stone-600 mt-2">
+            Venha nos visitar e relaxar no nosso studio.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          
+          <!-- Informações de Endereço & Horários -->
+          <div class="lg:col-span-5 bg-white p-7 sm:p-9 rounded-3xl border border-plum-100 shadow-sm flex flex-col justify-between">
+            <div class="space-y-6">
+              
+              <!-- Endereço Centralizado -->
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-2xl bg-plum-100 text-plum-800 flex items-center justify-center shrink-0 text-xl">
+                  <i class="ph-bold ph-map-pin"></i>
+                </div>
+                <div>
+                  <h4 class="font-serif text-lg font-bold text-plum-800">Endereço</h4>
+                  <p class="text-stone-600 text-sm mt-1 leading-relaxed dynamic-address">
+                    <!-- Preenchido via STUDIO_CONFIG no JavaScript -->
+                    Carregando endereço...
+                  </p>
+                </div>
+              </div>
+
+              <!-- Horário de Atendimento -->
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-2xl bg-plum-100 text-plum-800 flex items-center justify-center shrink-0 text-xl">
+                  <i class="ph-bold ph-clock"></i>
+                </div>
+                <div>
+                  <h4 class="font-serif text-lg font-bold text-plum-800">Horário de Funcionamento</h4>
+                  <p class="text-stone-600 text-sm mt-1 dynamic-hours">
+                    <!-- Preenchido via STUDIO_CONFIG no JavaScript -->
+                    Segunda a sábado, das 09:00 às 18:00
+                  </p>
+                  <span class="inline-block mt-2 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
+                    Atendimento com hora marcada
+                  </span>
+                </div>
+              </div>
+
+              <!-- Telefone de Contato -->
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-2xl bg-plum-100 text-plum-800 flex items-center justify-center shrink-0 text-xl">
+                  <i class="ph-bold ph-phone-call"></i>
+                </div>
+                <div>
+                  <h4 class="font-serif text-lg font-bold text-plum-800">Telefone Direto</h4>
+                  <a href="tel:+5521980265455" class="text-plum-800 font-semibold hover:underline dynamic-phone">
+                    (21) 98026-5455
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Botão Traçar Rota -->
+            <div class="pt-8 border-t border-plum-100 mt-6">
+              <a 
+                id="mapsRouteBtn" 
+                href="https://maps.google.com/?q=R.+Jer%C3%B4nimo+Serqueira,+55+-+Jacarepagu%C3%A1,+Rio+de+Janeiro+-+RJ,+22780-100" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="w-full inline-flex items-center justify-center gap-2 bg-lilac-soft hover:bg-plum-100 text-plum-800 font-semibold px-5 py-3 rounded-2xl transition"
+              >
+                <i class="ph-bold ph-navigation-arrow"></i>
+                <span>Abrir rota no Google Maps</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Embed Google Maps -->
+          <div class="lg:col-span-7 rounded-3xl overflow-hidden border border-plum-100 shadow-sm min-h-[350px] bg-white">
+            <iframe 
+              title="Localização Patrícia Araujo Studio de Beleza"
+              src="https://maps.google.com/maps?q=R.+Jer%C3%B4nimo+Serqueira,+55+-+Jacarepagu%C3%A1,+Rio+de+Janeiro+-+RJ,+22780-100&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+              class="w-full h-full min-h-[350px] border-0" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================
+         8. CONTATO E FORMULÁRIO DE AGENDAMENTO
+         ======================================================== -->
+    <section id="contato" class="py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="bg-gradient-to-br from-plum-800 to-plum-900 rounded-[2.5rem] text-white p-8 sm:p-14 shadow-2xl relative overflow-hidden">
+          
+          <!-- Elementos visuais abstratos de fundo -->
+          <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-plum-700/40 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10 items-center">
+            
+            <!-- Lado Esquerdo: Chamada e Links Rápidos -->
+            <div class="lg:col-span-6 space-y-6">
+              <span class="inline-block text-xs font-bold tracking-widest text-plum-200 uppercase bg-plum-700/50 px-3.5 py-1 rounded-full">
+                Agendamento Rápido
+              </span>
+              <h2 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight">
+                Pronta para reservar o seu momento?
+              </h2>
+              <p class="text-plum-100 text-base sm:text-lg leading-relaxed">
+                Envie seus dados no formulário ao lado para abrir seu WhatsApp com a mensagem pronta, ou fale diretamente conosco agora mesmo.
+              </p>
+
+              <!-- Canais de Contato Rápidos -->
+              <div class="pt-4 space-y-3">
+                <a href="#" class="cta-whatsapp-link inline-flex items-center gap-3 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-6 py-3.5 rounded-full text-sm sm:text-base shadow-lg transition-transform hover:scale-[1.02]" target="_blank" rel="noopener noreferrer">
+                  <i class="ph-bold ph-whatsapp-logo text-2xl"></i>
+                  <span>Falar pelo WhatsApp Oficial</span>
+                </a>
+
+                <div class="flex flex-wrap items-center gap-4 text-sm text-plum-100 pt-2">
+                  <a href="tel:+5521980265455" class="flex items-center gap-2 hover:text-white transition dynamic-phone-link">
+                    <i class="ph-bold ph-phone"></i>
+                    <span class="dynamic-phone">(21) 98026-5455</span>
+                  </a>
+                  <span>•</span>
+                  <a href="https://www.instagram.com/studio_patriciaaraujo" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-white transition">
+                    <i class="ph-bold ph-instagram-logo"></i>
+                    <span>@studio_patriciaaraujo</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lado Direito: Mini Formulário Interativo -->
+            <div class="lg:col-span-6 bg-white text-stone-800 rounded-3xl p-6 sm:p-8 shadow-xl">
+              <h3 class="font-serif text-2xl font-bold text-plum-800 mb-1">
+                Solicitar Agendamento
+              </h3>
+              <p class="text-xs text-stone-500 mb-6">
+                Preencha os campos abaixo para direcionar seu pedido ao WhatsApp
+              </p>
+
+              <form id="appointmentForm" class="space-y-4">
+                
+                <div>
+                  <label for="formName" class="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1">Seu Nome</label>
+                  <input 
+                    type="text" 
+                    id="formName" 
+                    required 
+                    placeholder="Como podemos te chamar?"
+                    class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-plum-800 text-sm"
+                  >
+                </div>
+
+                <div>
+                  <label for="formService" class="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1">Serviço de Interesse</label>
+                  <select 
+                    id="formService" 
+                    required 
+                    class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-plum-800 text-sm bg-white"
+                  >
+                    <option value="">Selecione um serviço...</option>
+                    <!-- Preenchido via JavaScript com todos os serviços -->
+                  </select>
+                </div>
+
+                <div>
+                  <label for="formNotes" class="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1">Preferência de Dia ou Horário (Opcional)</label>
+                  <textarea 
+                    id="formNotes" 
+                    rows="2" 
+                    placeholder="Ex: Quarta-feira pela manhã ou sábado..."
+                    class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-plum-800 text-sm resize-none"
+                  ></textarea>
+                </div>
+
+                <button 
+                  type="submit" 
+                  class="w-full bg-plum-800 hover:bg-plum-900 text-white font-semibold py-3.5 px-6 rounded-2xl shadow-md transition-all flex items-center justify-center gap-2"
+                >
+                  <i class="ph-bold ph-whatsapp-logo text-xl text-emerald-300"></i>
+                  <span>Prosseguir no WhatsApp</span>
+                </button>
+
+              </form>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ========================================================
+       9. FOOTER
+       ======================================================== -->
+  <footer class="bg-plum-950 text-plum-100/80 pt-16 pb-12 border-t border-plum-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-plum-800/60">
+        
+        <!-- Coluna 1: Nome e Sobre -->
+        <div class="md:col-span-2 space-y-4">
+          <div class="flex items-center gap-2">
+            <div class="w-9 h-9 rounded-full bg-plum-700 text-white flex items-center justify-center font-serif text-lg font-bold">
+              P
+            </div>
+            <span class="font-serif text-2xl font-bold text-white tracking-tight">
+              Patrícia Araujo Studio
+            </span>
+          </div>
+          <p class="text-sm max-w-sm text-plum-200/70 leading-relaxed">
+            Cabelo, cílios, sobrancelhas, unhas e muito mais. Cuidado completo, personalizado e feito com carinho para valorizar sua beleza.
+          </p>
+          <div class="flex items-center gap-3 pt-2">
+            <a href="https://www.instagram.com/studio_patriciaaraujo" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-plum-900 flex items-center justify-center text-white hover:bg-plum-800 transition">
+              <i class="ph-bold ph-instagram-logo text-xl"></i>
+            </a>
+            <a href="#" class="cta-whatsapp-link w-10 h-10 rounded-full bg-plum-900 flex items-center justify-center text-white hover:bg-plum-800 transition" target="_blank">
+              <i class="ph-bold ph-whatsapp-logo text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Coluna 2: Endereço & Horário -->
+        <div>
+          <h4 class="text-white font-serif font-bold text-base mb-4">Localização & Atendimento</h4>
+          <p class="text-xs text-plum-200/70 leading-relaxed mb-3 dynamic-address">
+            <!-- Centralizado via JavaScript -->
+          </p>
+          <p class="text-xs text-plum-200/70 dynamic-hours">
+            <!-- Centralizado via JavaScript -->
+          </p>
+        </div>
+
+        <!-- Coluna 3: Links Rápidos -->
+        <div>
+          <h4 class="text-white font-serif font-bold text-base mb-4">Links Rápidos</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#servicos" class="hover:text-white transition">Catálogo de Serviços</a></li>
+            <li><a href="#resultados" class="hover:text-white transition">Mural de Fotos</a></li>
+            <li><a href="#sobre" class="hover:text-white transition">Sobre o Studio</a></li>
+            <li><a href="#depoimentos" class="hover:text-white transition">Avaliações do Google</a></li>
+            <li><a href="#localizacao" class="hover:text-white transition">Mapa & Endereço</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Barra Inferior de Direitos -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-plum-300/50 gap-4">
+        <p>© <span id="currentYear"></span> Patrícia Araujo Studio de Beleza. Todos os direitos reservados.</p>
+        <p>Jacarepaguá, Rio de Janeiro - RJ</p>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ========================================================
+       BOTÃO FLUTUANTE DE WHATSAPP
+       ======================================================== -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <a 
+      href="#" 
+      class="cta-whatsapp-link group relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full shadow-2xl transition-transform hover:scale-110 active:scale-95" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      aria-label="Agendar via WhatsApp"
+    >
+      <span class="absolute -top-1 -right-1 flex h-4 w-4">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-4 w-4 bg-emerald-300"></span>
+      </span>
+      <i class="ph-bold ph-whatsapp-logo text-3xl"></i>
+    </a>
+  </div>
+
+
+  <!-- ========================================================
+       TOAST FEEDBACK (CÓPIA DE MENSAGEM)
+       ======================================================== -->
+  <div id="toastNotification" class="fixed bottom-24 right-6 z-50 transform translate-y-10 opacity-0 pointer-events-none transition-all duration-300 bg-plum-900 text-white text-xs font-semibold px-4 py-3 rounded-2xl shadow-xl flex items-center gap-2 border border-plum-700">
+    <i class="ph-fill ph-check-circle text-emerald-400 text-lg"></i>
+    <span id="toastMessage">Texto copiado para a área de transferência!</span>
+  </div>
+
+
+  <!-- ========================================================
+       JAVASCRIPT CENTRALIZADO, DINÂMICO E COMPLETO
+       ======================================================== -->
+  <script>
+    /**
+     * CONFIGURAÇÃO CENTRALIZADA DO ESTABELECIMENTO
+     * EDITAR ENDEREÇO E DADOS AQUI (Facilmente atualizável em um só ponto)
+     */
+    const STUDIO_CONFIG = {
+      nome: "Patrícia Araujo Studio de Beleza",
+      endereco: "R. Jerônimo Serqueira, 55 - Jacarepaguá, Rio de Janeiro - RJ, CEP 22780-100",
+      telefone: "(21) 98026-5455",
+      telefoneLink: "tel:+5521980265455",
+      whatsappLink: "https://wa.me/message/Z74RIUZO5GICO1",
+      instagramHandle: "@studio_patriciaaraujo",
+      instagramLink: "https://www.instagram.com/studio_patriciaaraujo",
+      horario: "Segunda a sábado, das 09:00 às 18:00",
+      googleRating: "4,9",
+      avaliacoesCount: "37 avaliações"
+    };
+
+    /**
+     * CATÁLOGO COMPLETO DE SERVIÇOS
+     * Contendo todas as especialidades e descrições fornecidas
+     */
+    const SERVICES_DATA = [
+      // Cabelo
+      {
+        id: "corte",
+        nome: "Corte de Cabelo",
+        categoria: "Cabelo",
+        descricao: "Corte personalizado de acordo com o seu formato de rosto e estilo de vida.",
+        icone: "ph-scissors"
+      },
+      {
+        id: "balayage",
+        nome: "Balayage",
+        categoria: "Cabelo",
+        descricao: "Iluminação dos fios com técnica suave para um efeito luminoso e degradê impecável.",
+        icone: "ph-sparkle"
+      },
+      {
+        id: "brushing",
+        nome: "Brushing (Escova)",
+        categoria: "Cabelo",
+        descricao: "Finalização modelada, alinhamento dos fios, brilho intenso e volume elegante.",
+        icone: "ph-wind"
+      },
+      {
+        id: "penteados",
+        nome: "Penteados",
+        categoria: "Cabelo",
+        descricao: "Penteados para formaturas, casamentos e ocasiões especiais com alta fixação.",
+        icone: "ph-crown"
+      },
+      {
+        id: "permanentes",
+        nome: "Permanentes",
+        categoria: "Cabelo",
+        descricao: "Definição e textura ondulada ou cacheada duradoura com tratamento protetor.",
+        icone: "ph-waves"
+      },
+      {
+        id: "extensoes-cabelo",
+        nome: "Extensões de Cabelo",
+        categoria: "Cabelo",
+        descricao: "Alongamento e preenchimento de pontas para comprimento e volume desejados.",
+        icone: "ph-magic-wand"
+      },
+
+      // Cílios
+      {
+        id: "extensao-cilios",
+        nome: "Extensão de Cílios",
+        categoria: "Cílios",
+        descricao: "Aplicação de cílios de longa duração para um olhar marcante todos os dias.",
+        icone: "ph-eye"
+      },
+
+      // Sobrancelhas
+      {
+        id: "design-sobrancelhas",
+        nome: "Design de Sobrancelhas",
+        categoria: "Sobrancelhas",
+        descricao: "Mapeamento facial e alinhamento milimétrico que valoriza seu olhar natural.",
+        icone: "ph-pencil-simple-line"
+      },
+      {
+        id: "laminacao-sobrancelhas",
+        nome: "Laminação de Sobrancelhas",
+        categoria: "Sobrancelhas",
+        descricao: "Alinhamento dos fios naturais (Brow Lamination) com aspecto volumoso e preenchido.",
+        icone: "ph-sparkle"
+      },
+      {
+        id: "embelezamento-sobrancelhas",
+        nome: "Embelezamento das Sobrancelhas",
+        categoria: "Sobrancelhas",
+        descricao: "Nutrição, coloração ou henna para harmonização sutil e elegante.",
+        icone: "ph-heart"
+      },
+
+      // Unhas
+      {
+        id: "manicure",
+        nome: "Manicure",
+        categoria: "Unhas",
+        descricao: "Cutilagem cuidadosa, hidratação profunda e esmaltação uniforme com acabamento perfeito.",
+        icone: "ph-hand-peace"
+      },
+      {
+        id: "pedicure",
+        nome: "Pedicure",
+        categoria: "Unhas",
+        descricao: "Higienização, lixamento, esfoliação e cuidado completo para os pés.",
+        icone: "ph-sparkle"
+      },
+      {
+        id: "unhas-acrilicas",
+        nome: "Unhas Acrílicas",
+        categoria: "Unhas",
+        descricao: "Alongamento em acrílico com alta resistência, acabamento natural e durabilidade.",
+        icone: "ph-diamond"
+      },
+
+      // Depilação
+      {
+        id: "depilacao-cera",
+        nome: "Depilação com Cera",
+        categoria: "Depilação",
+        descricao: "Remoção suave e higiênica com cera de alta qualidade que ameniza o desconforto.",
+        icone: "ph-feather"
+      },
+      {
+        id: "depilacao-cera-brasileira",
+        nome: "Depilação a Cera Brasileira",
+        categoria: "Depilação",
+        descricao: "Técnica tradicional para acabamento impecável e pele suave por mais tempo.",
+        icone: "ph-flower"
+      },
+
+      // Maquiagem e Pele
+      {
+        id: "maquiagem",
+        nome: "Maquiagem",
+        categoria: "Maquiagem e Pele",
+        descricao: "Produção profissional para eventos, fotos ou festas com produtos de alta performance.",
+        icone: "ph-palette"
+      },
+      {
+        id: "cuidados-pele",
+        nome: "Cuidados com a Pele",
+        categoria: "Maquiagem e Pele",
+        descricao: "Protocolos faciais revitalizantes, hidratação e preparação para devolver o viço natural.",
+        icone: "ph-drop"
+      }
+    ];
+
+    /**
+     * INICIALIZAÇÃO DA PÁGINA
+     */
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Injetar dados centralizados em todos os locais da página
+      injetarConfiguracoes();
+
+      // 2. Renderizar cardápio de serviços inicial
+      renderizarServicos(SERVICES_DATA);
+
+      // 3. Preencher dropdown do formulário
+      popularSelectServicos();
+
+      // 4. Configurar eventos de busca, filtros e interações
+      configurarBuscaEFiltros();
+      configurarMenuMobile();
+      configurarFormulario();
+
+      // 5. Ano atual no footer
+      document.getElementById("currentYear").textContent = new Date().getFullYear();
+    });
+
+    /**
+     * Aplica o STUDIO_CONFIG na página dinamicamente
+     */
+    function injetarConfiguracoes() {
+      // Atualizar todos os links de WhatsApp fixos
+      document.querySelectorAll(".cta-whatsapp-link").forEach(link => {
+        link.href = STUDIO_CONFIG.whatsappLink;
+      });
+
+      // Atualizar endereços
+      document.querySelectorAll(".dynamic-address").forEach(el => {
+        el.textContent = STUDIO_CONFIG.endereco;
+      });
+
+      // Atualizar horários
+      document.querySelectorAll(".dynamic-hours").forEach(el => {
+        el.textContent = STUDIO_CONFIG.horario;
+      });
+
+      // Atualizar telefones
+      document.querySelectorAll(".dynamic-phone").forEach(el => {
+        el.textContent = STUDIO_CONFIG.telefone;
+      });
+
+      document.querySelectorAll(".dynamic-phone-link").forEach(el => {
+        el.href = STUDIO_CONFIG.telefoneLink;
+      });
+    }
+
+    /**
+     * Renderiza os cards de serviços no grid
+     */
+    function renderizarServicos(servicos) {
+      const grid = document.getElementById("servicesGrid");
+      const noResults = document.getElementById("noServicesFound");
+
+      grid.innerHTML = "";
+
+      if (servicos.length === 0) {
+        noResults.classList.remove("hidden");
+        return;
+      } else {
+        noResults.classList.add("hidden");
+      }
+
+      servicos.forEach(servico => {
+        const card = document.createElement("div");
+        card.className = "service-card bg-white rounded-2xl p-6 border border-plum-100 shadow-sm hover:shadow-md hover:border-plum-300 flex flex-col justify-between";
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-block text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-lilac-soft text-plum-800">
+                ${servico.categoria}
+              </span>
+              <div class="w-9 h-9 rounded-full bg-plum-50 text-plum-800 flex items-center justify-center text-lg">
+                <i class="ph-bold ${servico.icone}"></i>
+              </div>
+            </div>
+
+            <h3 class="font-serif text-lg font-bold text-plum-800 mb-1.5">
+              ${servico.nome}
+            </h3>
+
+            <p class="text-xs text-stone-500 leading-relaxed mb-5">
+              ${servico.descricao}
+            </p>
+          </div>
+
+          <div class="pt-3 border-t border-plum-50 flex items-center gap-2">
+            <!-- Botão Direto para o Link Oficial WhatsApp -->
+            <a 
+              href="${STUDIO_CONFIG.whatsappLink}" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="flex-1 bg-plum-800 hover:bg-plum-900 text-white text-xs font-semibold py-2.5 px-3 rounded-xl transition text-center flex items-center justify-center gap-1.5"
+            >
+              <i class="ph-bold ph-whatsapp-logo text-base text-emerald-300"></i>
+              <span>Agendar</span>
+            </a>
+
+            <!-- Botão Auxiliar: Copiar Mensagem Pronta para facilitar a cliente -->
+            <button 
+              type="button" 
+              onclick="copiarTextoAgendamento('${servico.nome}')" 
+              class="p-2.5 rounded-xl border border-lilac-border hover:bg-plum-100 text-plum-800 transition" 
+              title="Copiar texto pronto: Olá! Gostaria de agendar: ${servico.nome}"
+            >
+              <i class="ph-bold ph-copy text-base"></i>
+            </button>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+    }
+
+    /**
+     * Copia a mensagem de agendamento compatível com o navegador
+     */
+    function copiarTextoAgendamento(nomeServico) {
+      const texto = `Olá! Gostaria de agendar: ${nomeServico}`;
+      
+      // Fallback compatível com iframes e browsers modernos
+      const textarea = document.createElement("textarea");
+      textarea.value = texto;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      
+      try {
+        document.execCommand("copy");
+        mostrarToast(`Texto copiado: "${texto}"`);
+      } catch (err) {
+        console.error("Falha ao copiar:", err);
+      } finally {
+        document.body.removeChild(textarea);
+      }
+    }
+
+    /**
+     * Feedback visual de Toast
+     */
+    function mostrarToast(mensagem) {
+      const toast = document.getElementById("toastNotification");
+      const toastMsg = document.getElementById("toastMessage");
+      
+      toastMsg.textContent = mensagem;
+      toast.classList.remove("opacity-0", "translate-y-10", "pointer-events-none");
+      toast.classList.add("opacity-100", "translate-y-0");
+
+      setTimeout(() => {
+        toast.classList.remove("opacity-100", "translate-y-0");
+        toast.classList.add("opacity-0", "translate-y-10", "pointer-events-none");
+      }, 3500);
+    }
+
+    /**
+     * Configuração do Mecanismo de Busca e Filtros
+     */
+    function configurarBuscaEFiltros() {
+      const searchInput = document.getElementById("serviceSearchInput");
+      const clearBtn = document.getElementById("clearSearchBtn");
+      const chips = document.querySelectorAll(".category-chip");
+      const resetBtn = document.getElementById("resetSearchBtn");
+
+      let categoriaAtiva = "todos";
+
+      function filtrar() {
+        const termo = searchInput.value.toLowerCase().trim();
+
+        // Controlar visibilidade do botão limpar da busca
+        if (termo.length > 0) {
+          clearBtn.classList.remove("hidden");
+        } else {
+          clearBtn.classList.add("hidden");
+        }
+
+        const filtrados = SERVICES_DATA.filter(servico => {
+          const bateCategoria = (categoriaAtiva === "todos") || (servico.categoria.toLowerCase() === categoriaAtiva.toLowerCase());
+          const bateTexto = servico.nome.toLowerCase().includes(termo) || 
+                            servico.descricao.toLowerCase().includes(termo) ||
+                            servico.categoria.toLowerCase().includes(termo);
+          return bateCategoria && bateTexto;
+        });
+
+        renderizarServicos(filtrados);
+      }
+
+      // Evento de digitação na busca
+      searchInput.addEventListener("input", filtrar);
+
+      // Limpar busca no botão 'x'
+      clearBtn.addEventListener("click", () => {
+        searchInput.value = "";
+        filtrar();
+        searchInput.focus();
+      });
+
+      // Reset completo no estado vazio
+      resetBtn.addEventListener("click", () => {
+        searchInput.value = "";
+        categoriaAtiva = "todos";
+        atualizarEstiloChips("todos");
+        filtrar();
+      });
+
+      // Cliques nos Chips de Categoria
+      chips.forEach(chip => {
+        chip.addEventListener("click", () => {
+          categoriaAtiva = chip.getAttribute("data-category");
+          atualizarEstiloChips(categoriaAtiva);
+          filtrar();
+        });
+      });
+
+      function atualizarEstiloChips(categoria) {
+        chips.forEach(chip => {
+          if (chip.getAttribute("data-category") === categoria) {
+            chip.className = "category-chip active-chip px-5 py-2 rounded-full text-sm font-semibold transition-all shadow-sm bg-plum-800 text-white";
+          } else {
+            chip.className = "category-chip px-5 py-2 rounded-full text-sm font-semibold transition-all bg-white text-plum-800 border border-lilac-border hover:bg-plum-100";
+          }
+        });
+      }
+    }
+
+    /**
+     * Preenche as opções do select do mini formulário
+     */
+    function popularSelectServicos() {
+      const select = document.getElementById("formService");
+      SERVICES_DATA.forEach(s => {
+        const opt = document.createElement("option");
+        opt.value = s.nome;
+        opt.textContent = `${s.nome} (${s.categoria})`;
+        select.appendChild(opt);
+      });
+    }
+
+    /**
+     * Menu Mobile Hambúrguer
+     */
+    function configurarMenuMobile() {
+      const btn = document.getElementById("mobileMenuBtn");
+      const menu = document.getElementById("mobileMenu");
+      const icon = document.getElementById("menuIcon");
+      const links = document.querySelectorAll(".mobile-link");
+
+      btn.addEventListener("click", () => {
+        const isHidden = menu.classList.contains("hidden");
+        if (isHidden) {
+          menu.classList.remove("hidden");
+          icon.className = "ph-bold ph-x text-2xl";
+        } else {
+          menu.classList.add("hidden");
+          icon.className = "ph-bold ph-list text-2xl";
+        }
+      });
+
+      links.forEach(l => {
+        l.addEventListener("click", () => {
+          menu.classList.add("hidden");
+          icon.className = "ph-bold ph-list text-2xl";
+        });
+      });
+    }
+
+    /**
+     * Processamento do Formulário com cópia e direcionamento
+     */
+    function configurarFormulario() {
+      const form = document.getElementById("appointmentForm");
+      
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        
+        const nome = document.getElementById("formName").value.trim();
+        const servico = document.getElementById("formService").value;
+        const notas = document.getElementById("formNotes").value.trim();
+
+        const textoPronto = `Olá! Meu nome é ${nome}. Gostaria de agendar: ${servico}.${notas ? ' Preferência: ' + notas : ''}`;
+        
+        // Copia a mensagem formulada
+        copiarTextoAgendamento(servico);
+        mostrarToast("Informações preparadas! Abrindo o WhatsApp...");
+
+        // Abre o link oficial fornecido do WhatsApp
+        setTimeout(() => {
+          window.open(STUDIO_CONFIG.whatsappLink, "_blank");
+        }, 800);
+      });
+    }
+  </script>
+
+</body>
+</html>
